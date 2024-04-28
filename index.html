@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="theme-color" content="#f2f3f5" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="application-name" content="Admin Diy"/>
+	<link rel="icon" href="/admin-diy/assets/logo-DCZDIjBD.png"/>
+	<title>Admin Diy</title>
+	<style>
+		body {
+			margin: 0;
+			font-size: 14px;
+			font-family: Helvetica, PingFang SC, sans-serif;
+		}
+		.not-suport,
+		.app-loading,
+		.box-progress {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+		.not-suport,
+		.app-loading {
+			top: 35%;
+			text-align: center;
+		}
+		.app-loading,
+		.not-suport strong {
+			font-size: 16px;
+			color: #409eff;
+		}
+		.box-progress {
+			overflow: hidden;
+			z-index: 9999;
+			height: 2px;
+			pointer-events: none;
+		}
+		.app-progress {
+			width: 0;
+			height: 100%;
+			background: #409eff;
+		}
+		.is-hide {
+			display: none;
+		}
+	</style>
+  <script type="module" crossorigin src="/admin-diy/assets/index-B0Zwk6Q1.js"></script>
+  <link rel="modulepreload" crossorigin href="/admin-diy/assets/tinymce-rRFwJXCQ.js">
+  <link rel="stylesheet" crossorigin href="/admin-diy/assets/index-BTOZHIDb.css">
+</head>
+<body>
+	<div id="app"></div>
+
+	<div
+		id="app_loading"
+		class="app-loading is-hide"
+	>
+		<strong>进入中</strong>
+		∵∴
+	</div>
+
+	<div
+		id="app_upgrade"
+		class="not-suport is-hide"
+	>
+		为了您的体验, 推荐使用 <strong>Google Chrome</strong> 或 <strong>Mircosoft Edge</strong>
+	</div>
+
+	<noscript class="not-suport">
+		为了您的体验, 请打开 <strong>JavaScript</strong>
+	</noscript>
+
+	<div class="box-progress">
+		<div
+			id="app_progress"
+			class="app-progress"
+		></div>
+	</div>
+
+	<script>
+		if ('ActiveXObject' in window) {
+			app_upgrade.classList.remove('is-hide');
+		} else if (!sessionStorage.getItem('session_enter_index')) {
+			app_loading.classList.remove('is-hide');
+			sessionStorage.setItem('session_enter_index', '1');
+		}
+
+		window.app_dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		window.app_mobile = 'ontouchstart' in window;
+		window.app_entry = window.location.hash.replace('#', '') || window.location.pathname;
+
+		const storeConfig = localStorage.getItem('store_config');
+		let isDarkTheme = window.app_dark;
+
+		if (storeConfig) {
+			const config = JSON.parse(storeConfig);
+
+			isDarkTheme = config.layout.isDark;
+
+			if (config.lang.defaultLang === 'en') {
+				app_loading.children[0].innerHTML = 'Loading';
+			}
+		}
+
+		if (isDarkTheme) {
+			document.body.style.background = '#0a0a0a';
+		}
+	</script>
+</body>
+</html>
