@@ -1,0 +1,1 @@
+import{d as t,o as a,c as n,a as e}from"./@vue-DQf6Dgym.js";const o=e("div",{class:"qp-box"},[e("ul",null,[e("a",{href:"https://static-mp-c8e09fc0-0898-4162-9091-d1929e442482.next.bspapp.com/app-diy",target:"_blank",rel:"noopener noreferrer"}," 测试云开发 ")])],-1),r=[o],i=t({name:"Characteristic",__name:"index",setup(s){return(c,p)=>(a(),n("div",null,r))}});export{i as default};
